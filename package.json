@@ -1,0 +1,59 @@
+{
+  "name": "ppppp-conductor",
+  "version": "1.0.0",
+  "description": "PPPPP manager that sets tangle goals",
+  "author": "Andre Staltz <contact@staltz.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/staltz/ppppp-conductor",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:staltz/ppppp-conductor.git"
+  },
+  "main": "index.js",
+  "files": [
+    "*.js",
+    "lib/*.js"
+  ],
+  "exports": {
+    ".": {
+      "require": "./lib/index.js"
+    }
+  },
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "debug": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/debug": "4.1.9",
+    "bs58": "^5.0.0",
+    "c8": "7",
+    "ppppp-caps": "github:staltz/ppppp-caps",
+    "ppppp-db": "github:staltz/ppppp-db",
+    "ppppp-dict": "github:staltz/ppppp-dict",
+    "ppppp-gc": "github:staltz/ppppp-gc",
+    "ppppp-goals": "github:staltz/ppppp-goals",
+    "ppppp-keypair": "github:staltz/ppppp-keypair",
+    "ppppp-tangle-sync": "github:staltz/ppppp-tangle-sync",
+    "prettier": "^2.6.2",
+    "pretty-quick": "^3.1.3",
+    "rimraf": "^4.4.0",
+    "secret-handshake-ext": "~0.0.9",
+    "secret-stack": "~7.1.1",
+    "ssb-box": "^1.0.1"
+  },
+  "scripts": {
+    "test": "node --test",
+    "format-code": "prettier --write \"(lib|test)/**/*.js\"",
+    "format-code-staged": "pretty-quick --staged --pattern \"(lib|test)/**/*.js\"",
+    "coverage": "c8 --reporter=lcov npm run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format-code-staged"
+    }
+  }
+}
