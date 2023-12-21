@@ -22,6 +22,7 @@ function createPeer(opts) {
     .use(require('ppppp-db'))
     .use(require('ssb-box'))
     .use(require('ppppp-set'))
+    .use(require('ppppp-dict'))
     .use(require('ppppp-goals'))
     .use(require('ppppp-sync'))
     .use(require('ppppp-gc'))

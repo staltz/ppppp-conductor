@@ -34,6 +34,7 @@
     "ppppp-caps": "github:staltz/ppppp-caps",
     "ppppp-db": "github:staltz/ppppp-db",
     "ppppp-set": "github:staltz/ppppp-set",
+    "ppppp-dict": "github:staltz/ppppp-dict",
     "ppppp-gc": "github:staltz/ppppp-gc",
     "ppppp-goals": "github:staltz/ppppp-goals",
     "ppppp-keypair": "github:staltz/ppppp-keypair",
