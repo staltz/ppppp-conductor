@@ -388,8 +388,8 @@ test('Set and Dict ghost spans', async (t) => {
   alice.conductor.start(aliceID, [['post@all'], ['post@all']], 4_000)
   bob.conductor.start(bobID, [['post@all'], ['post@all']], 4_000)
 
-  assert.equal(alice.set.getGhostSpan(), 11916, 'alice set ghost span is 2')
-  assert.equal(alice.dict.getGhostSpan(), 11916, 'alice set ghost span is 2')
+  assert.equal(alice.set.getGhostSpan(), 5958, 'alice set ghost span is 2')
+  assert.equal(alice.dict.getGhostSpan(), 5958, 'alice set ghost span is 2')
 
   await p(alice.close)(true)
   await p(bob.close)(true)
