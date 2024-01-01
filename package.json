@@ -9,9 +9,9 @@
     "type": "git",
     "url": "git@github.com:staltz/ppppp-conductor.git"
   },
+  "type": "commonjs",
   "main": "index.js",
   "files": [
-    "*.js",
     "lib/*.js"
   ],
   "exports": {
@@ -19,7 +19,6 @@
       "require": "./lib/index.js"
     }
   },
-  "type": "commonjs",
   "engines": {
     "node": ">=16"
   },
