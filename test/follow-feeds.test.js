@@ -63,7 +63,7 @@ test('Replicate selected feeds of followed accounts', async (t) => {
   }
 
   // Alice follows Bob, but not Carol
-  assert(await p(alice.set.add)('follow', bobID), 'alice follows bob')
+  assert(await p(alice.set.add)('follows', bobID), 'alice follows bob')
 
   alice.conductor.start(aliceID, [['post@all'], ['post@all']], 64_000_000)
   bob.conductor.start(bobID, [['post@all'], ['post@all']], 64_000_000)
@@ -141,7 +141,7 @@ test('GC selected feeds of followed accounts', async (t) => {
   }
 
   // Alice follows Bob, but not Carol
-  assert(await p(alice.set.add)('follow', bobID), 'alice follows bob')
+  assert(await p(alice.set.add)('follows', bobID), 'alice follows bob')
 
   alice.conductor.start(aliceID, [['post@all'], ['post@all']], 64_000_000)
   bob.conductor.start(bobID, [['post@all'], ['post@all']], 64_000_000)
@@ -233,7 +233,7 @@ test('GC recently-unfollowed accounts', async (t) => {
   }
 
   // Alice follows Bob, but not Carol
-  assert(await p(alice.set.add)('follow', bobID), 'alice follows bob')
+  assert(await p(alice.set.add)('follows', bobID), 'alice follows bob')
 
   alice.conductor.start(aliceID, [['post@all'], ['post@all']], 4_000)
   bob.conductor.start(bobID, [['post@all'], ['post@all']], 4_000)
@@ -248,7 +248,7 @@ test('GC recently-unfollowed accounts', async (t) => {
     'alice has alice and bob posts'
   )
 
-  assert(await p(alice.set.del)('follow', bobID), 'alice unfollows bob')
+  assert(await p(alice.set.del)('follows', bobID), 'alice unfollows bob')
   await p(setTimeout)(1000)
 
   assert.deepEqual(
@@ -320,7 +320,7 @@ test('GC recently-blocked accounts', async (t) => {
   }
 
   // Alice follows Bob, but not Carol
-  assert(await p(alice.set.add)('follow', bobID), 'alice follows bob')
+  assert(await p(alice.set.add)('follows', bobID), 'alice follows bob')
 
   alice.conductor.start(aliceID, [['post@all'], ['post@all']], 4_000)
   bob.conductor.start(bobID, [['post@all'], ['post@all']], 4_000)
@@ -383,7 +383,7 @@ test('Set and Dict ghost spans', async (t) => {
   await p(carol.set.load)(bobID)
 
   // Alice follows Bob, but not Carol
-  assert(await p(alice.set.add)('follow', bobID), 'alice follows bob')
+  assert(await p(alice.set.add)('follows', bobID), 'alice follows bob')
 
   alice.conductor.start(aliceID, [['post@all'], ['post@all']], 4_000)
   bob.conductor.start(bobID, [['post@all'], ['post@all']], 4_000)
