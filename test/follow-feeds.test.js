@@ -335,7 +335,7 @@ test('GC recently-blocked accounts', async (t) => {
     'alice has alice and bob posts'
   )
 
-  assert(await p(alice.set.add)('block', bobID), 'alice blocks bob')
+  assert(await p(alice.set.add)('blocks', bobID), 'alice blocks bob')
   await p(setTimeout)(1000)
 
   assert.deepEqual(
