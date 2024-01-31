@@ -222,7 +222,7 @@ test('GC recently-unfollowed accounts', async (t) => {
     subdomain: 'account',
     _nonce: 'carol',
   })
-  await p(carol.set.load)(bobID)
+  await p(carol.set.load)(carolID)
   // Carol creates a feed of posts
   for (let i = 0; i < 5; i++) {
     await p(carol.db.feed.publish)({
