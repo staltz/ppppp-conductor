@@ -7,6 +7,48 @@ function getTexts(msgs) {
   return msgs.filter((msg) => msg.data?.text).map((msg) => msg.data.text)
 }
 
+test('Sets goals according to input rules', async (t) => {
+  // Alice
+  const alice = createPeer({ name: 'alice' })
+  await alice.db.loaded()
+  // Alice creates her own account
+  const aliceID = await p(alice.db.account.create)({
+    subdomain: 'account',
+    _nonce: 'alice',
+  })
+  await p(alice.set.load)(aliceID)
+
+  alice.conductor.start(
+    aliceID,
+    [['posts@newest-100', 'hubs@set', 'profile@dict']],
+    64_000_000
+  )
+
+  const goals = [...alice.goals.list()]
+  assert.equal(goals.length, 6, 'alice has 6 goals')
+
+  assert.equal(goals[0].type, 'all')
+  assert.equal(goals[0].id, aliceID)
+
+  assert.equal(goals[1].type, 'set')
+  assert.equal(goals[1].id, alice.db.feed.getID(aliceID, alice.set.getDomain('follows')))
+
+  assert.equal(goals[2].type, 'set')
+  assert.equal(goals[2].id, alice.db.feed.getID(aliceID, alice.set.getDomain('blocks')))
+
+  assert.equal(goals[3].type, 'newest')
+  assert.equal(goals[3].count, 100)
+  assert.equal(goals[3].id, alice.db.feed.getID(aliceID, 'posts'))
+
+  assert.equal(goals[4].type, 'set')
+  assert.equal(goals[4].id, alice.db.feed.getID(aliceID, alice.set.getDomain('hubs')))
+
+  assert.equal(goals[5].type, 'dict')
+  assert.equal(goals[5].id, alice.db.feed.getID(aliceID, alice.dict.getDomain('profile')))
+
+  await p(alice.close)(true)
+})
+
 test('Replicate selected feeds of followed accounts', async (t) => {
   // Alice
   const alice = createPeer({ name: 'alice' })
